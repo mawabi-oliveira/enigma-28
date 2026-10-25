@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Enigma 28 - RSA</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <header>
+    <b class="logo">E</b> <b>ENIGMA <span>/ 28</span></b>
+    <small>MATEMÁTICA DISCRETA</small>
+  </header>
+
+  <main>
+    <section class="hero">
+      <small class="label">CRIPTOGRAFIA ASSIMÉTRICA</small>
+      <h1>Uma mensagem.<br><span>Duas chaves.</span></h1>
+      <p>Gere uma chave pública, criptografe uma mensagem e recupere o texto original com os parâmetros privados.</p>
+      <code>c ≡ m<sup>e</sup> (mod n) / m ≡ c<sup>d</sup> (mod n)</code>
+    </section>
+
+    <!--MSG-->
+
+    <section class="cards">
+      <form action="/chave" method="POST">
+        <small class="label">01</small>
+        <h2>Gerar chave pública</h2>
+        <p>Informe p, q e e. A chave será salva em um arquivo de texto.</p>
+        <div class="row">
+          <label>Primo p <input name="p" placeholder="Ex.: 7" required></label>
+          <label>Primo q <input name="q" placeholder="Ex.: 11" required></label>
+        </div>
+        <label>Expoente e <input name="e" placeholder="Ex.: 7" required></label>
+        <button>Gerar chave</button>
+        <small class="file">▤ chave_publica.txt</small>
+      </form>
+
+      <form action="/criptografar" method="POST">
+        <small class="label">02</small>
+        <h2>Criptografar</h2>
+        <p>Use a chave pública recebida de outra equipe para codificar sua mensagem.</p>
+        <label>Mensagem <input name="mensagem" placeholder="Letras A–Z e espaços" required></label>
+        <label>Chave pública <input name="chave" placeholder="Ex.: 7 77" required></label>
+        <label class="upload">▤ Carregar chave_publica.txt <input type="file" accept=".txt" data-alvo="chave"></label>
+        <button>Criptografar</button>
+        <small class="file">▤ mensagem_criptografada.txt</small>
+      </form>
+
+      <form action="/descriptografar" method="POST">
+        <small class="label">03</small>
+        <h2>Descriptografar</h2>
+        <p>Informe p, q e e para calcular d e recuperar a mensagem recebida.</p>
+        <label>Mensagem criptografada <input name="mensagem" placeholder="Ex.: 15 20 8 8" required></label>
+        <label class="upload">▤ Carregar mensagem_criptografada.txt <input type="file" accept=".txt" data-alvo="mensagem"></label>
+        <div class="row">
+          <label>Primo p <input name="p" required></label>
+          <label>Primo q <input name="q" required></label>
+        </div>
+        <label>Expoente e <input name="e" required></label>
+        <button>Descriptografar</button>
+        <small class="file">▤ mensagem_descriptografada.txt</small>
+      </form>
+    </section>
+
+    <section class="alfabeto">
+      <div><small class="label">REFERÊNCIA DO ALFABETO</small><h2>Texto para números</h2></div>
+      <span><b>A–Z</b> 2–27</span>
+      <span><b>Espaço</b> 28</span>
+    </section>
+  </main>
+
+  <script>
+    // preenche o campo com o conteúdo de um .txt recebido da outra equipe
+    document.querySelectorAll('input[type=file]').forEach((f) => {
+      f.onchange = () => {
+        const leitor = new FileReader();
+        leitor.onload = () => {
+          f.closest('form').querySelector(`[name=${f.dataset.alvo}]`).value = leitor.result.trim().replace(/\s+/g, ' ');
+        };
+        leitor.readAsText(f.files[0]);
+      };
+    });
+  </script>
+</body>
+</html>

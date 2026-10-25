@@ -1,0 +1,4 @@
+node_modules/
+chave_publica.txt
+mensagem_criptografada.txt
+mensagem_descriptografada.txt
