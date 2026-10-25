@@ -1,6 +1,6 @@
 # Enigma 28 - Criptografia RSA
 
-Projeto Final de Matemática Discreta — Universidade Federal de Alagoas, Instituto de Computação (prof. Lucas Amorim).
+Projeto Final de Matemática Discreta - Universidade Federal de Alagoas, Instituto de Computação (prof. Lucas Amorim).
 
 O **Enigma 28** é uma aplicação web em Node.js que implementa o algoritmo de criptografia RSA. Com ela é possível gerar uma chave pública, criptografar uma mensagem de texto e descriptografá-la, tudo a partir de uma interface com três opções. Os cálculos usam `BigInt`, então funcionam com números grandes sem perda de precisão.
 
