@@ -1,4 +1,4 @@
-# Enigma 28 — Criptografia RSA
+# Enigma 28 - Criptografia RSA
 
 Projeto Final de Matemática Discreta — Universidade Federal de Alagoas, Instituto de Computação (prof. Lucas Amorim).
 
